@@ -1,41 +1,40 @@
 package br.com.douglasmendes.bottelegram;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ApplicationScoped;
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
-import br.com.douglasmendes.bottelegram.util.Util;
-import java.util.Timer;
-import java.util.TimerTask;
+//@ApplicationScoped
+//	@PostConstruct
+//@ManagedBean(name = "telegram"/* , eager = true */)
 
-@ApplicationScoped
-@ManagedBean(name = "botTelegram", eager = true)
-public class EscopoApplictCSCTimerTelegram {
-	int delay = 4000; // delay de 4 seg.
-	int interval = 4000; // intervalo de 4 seg.
+public class EscopoApplictCSCTimerTelegram implements Serializable {
+	private int delay = 4000; // delay de 4 seg.
+	private int interval = 4000; // intervalo de 4 seg.
+//	private FluxoTelegram webTelegram = new FluxoTelegram();
 
-	public String mensagemTeste;
+
+
+	/*
+	 * public void iniciarOuvinteTelegram() {
+	 * System.out.println("Iniciando CSC BOT Telegram."); Timer timer = new Timer();
+	 * timer.scheduleAtFixedRate(new TimerTask() { public void run() {
+	 * EscopoApplictCSCTimerTelegram.this.webTelegram.iniciarChatBotTelegram(); } },
+	 * this.delay, this.interval); }
+	 */
 	
-	private IniciaWEBTelegram webTelegram = new IniciaWEBTelegram();
-	@PostConstruct
-	public void timeout() {
 
-		Util.addLoggerInfo("Iniciando CSC BOT Telegram.");
-		Timer timer = new Timer();
-		timer.scheduleAtFixedRate(new TimerTask() {
-			public void run() {
-				EscopoApplictCSCTimerTelegram.this.webTelegram.iniciarChatBotTelegram();
-			}
-		}, this.delay, this.interval);
-	}
-	public String getMensagemTeste() {
-		return this.mensagemTeste;
-	}
-	public void setMensagemTeste(String mensagemTeste) {
-		this.mensagemTeste = mensagemTeste;
+	public static void main(String[] args) {
+		new EscopoApplictCSCTimerTelegram().processar();
 	}
 
-	public void metodoTeste() {
-		System.out.println("Teste página");
+	private void processar() {
+//		iniciarOuvinteTelegram();
 	}
+
+	public EscopoApplictCSCTimerTelegram() {
+		super();
+	}
+
 }
