@@ -47,7 +47,7 @@ public class PrincipalTelegram {
 	private void processar() {
 
 //		//Criação do objeto bot com as informações de acesso
-		//this.bot = new TelegramBot(this.token);
+		// this.bot = new TelegramBot(this.token);
 		TelegramBot bot = new TelegramBot(TOKEN_TELEGRAM_PUBLICADOR);
 //		//objeto responsável por receber as mensagens
 		GetUpdatesResponse updatesResponse;
@@ -71,25 +71,28 @@ public class PrincipalTelegram {
 			List<Update> updates = updatesResponse.updates();
 
 			// análise de cada ação da mensagem
-			for (Update update : updates) {
+			if (updates != null) {
+				for (Update update : updates) {
 
-				// atualização do off-set
-				m = update.updateId() + 1;
+					// atualização do off-set
+					m = update.updateId() + 1;
 
-				System.out.println("Recebendo mensagem:" + update.message().text());
+					System.out.println("Recebendo mensagem:" + update.message().text());
 
-				// envio de "Escrevendo" antes de enviar a resposta
-				baseResponse = bot.execute(new SendChatAction(update.message().chat().id(), ChatAction.typing.name()));
-				// verificação de ação de chat foi enviada com sucesso
-				System.out.println("Resposta de Chat Action Enviada?" + baseResponse.isOk());
+					// envio de "Escrevendo" antes de enviar a resposta
+					baseResponse = bot
+							.execute(new SendChatAction(update.message().chat().id(), ChatAction.typing.name()));
+					// verificação de ação de chat foi enviada com sucesso
+					System.out.println("Resposta de Chat Action Enviada?" + baseResponse.isOk());
 
-				// envio da mensagem de resposta
-				sendResponse = bot.execute(new SendMessage(update.message().chat().id(), "ChatBOT CSCPR Em construção."));
-				// verificação de mensagem enviada com sucesso
-				System.out.println("Mensagem Enviada?" + sendResponse.isOk());
+					// envio da mensagem de resposta
+					sendResponse = bot.execute(
+							new SendMessage(update.message().chat().id(), "ChatBOT CSCPR Em construção - teste01.."));
+					// verificação de mensagem enviada com sucesso
+					System.out.println("Mensagem Enviada?" + sendResponse.isOk());
 
+				}
 			}
-
 		}
 
 	}
