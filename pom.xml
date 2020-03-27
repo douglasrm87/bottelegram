@@ -64,17 +64,54 @@
 			<version>6.2</version>
 		</dependency>
 
-		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-log4j12</artifactId> 
-			<version>1.6.0</version> </dependency> <dependency> <groupId>org.slf4j</groupId> 
-			<artifactId>slf4j-api</artifactId> <version>1.6.0</version> </dependency> -->
 		<dependency>
 			<groupId>com.github.pengrad</groupId>
 			<artifactId>java-telegram-bot-api</artifactId>
 			<version>4.6.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.telegram/telegrambots -->
-		<!-- <dependency> <groupId>org.telegram</groupId> <artifactId>telegrambots</artifactId> 
-			<version>4.6</version> </dependency> -->
+
+
+		<!-- Copel -->
+		<dependency>
+			<groupId>com.copel.scs</groupId>
+			<artifactId>scs</artifactId>
+			<version>2.0.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.copel.srh</groupId>
+			<artifactId>srhclient</artifactId>
+			<version>1.5-JB7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.copel.mail</groupId>
+			<artifactId>copelMail</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.1.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.ejb3</groupId>
+			<artifactId>jboss-ejb3-ext-api</artifactId>
+			<version>2.1.0</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 </project>
 
