@@ -6,9 +6,11 @@ public class ComandoTelegram {
 
 	private static final String FUNCOES = "\nFunções:\n";
 	public final static String AJUDA = "1 - Comandos disponivieis.\n";
-	public final static String LOGIN = "2 - informar matricula.\n";
+	public final static String LOGIN = "2 - Informar matricula.\n";
 	public final static String VPN_CONECTADA = "3 - VPN de Home Office.\n";
+	public final static String PING_V4 = "4 - ping IP/PAT.\n";
 	public final static String FORCE_POINT = "\nConectado na VPN ForcePoint.\n";
+	public final static String LOGIN_RESULT = "\nAutorizado a usar o sistema.\n";
 
 	private String montarMensagemRetorno(Message msgTelegram) {
 		StringBuilder msgRetorno = new StringBuilder();
@@ -22,9 +24,17 @@ public class ComandoTelegram {
 		case 1:
 			msg.append(iniciarTexto(msgTelegram));
 			break;
-
 		case 2:
+			msg.append(LOGIN_RESULT);
+			break;
+			
+		case 3:
 			msg.append(FORCE_POINT);
+			break;
+
+		case 4:
+			ComandoPing ping = new ComandoPing();
+			msg.append(ping.processar("ping -4 -n 1 L00000221"));
 			break;
 
 		default:

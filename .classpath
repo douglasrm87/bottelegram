@@ -25,6 +25,10 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/devstudio12/workspace/bottelegram/WebContent/WEB-INF/lib/java-telegram-bot-api-4.6.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/devstudio12/workspace/bottelegram/WebContent/WEB-INF/lib/gson-2.8.1.jar"/>
+	<classpathentry kind="lib" path="D:/devstudio12/workspace/bottelegram/WebContent/WEB-INF/lib/java-telegram-bot-api-3.2.0.jar"/>
+	<classpathentry kind="lib" path="D:/devstudio12/workspace/bottelegram/WebContent/WEB-INF/lib/logging-interceptor-3.8.1.jar"/>
+	<classpathentry kind="lib" path="D:/devstudio12/workspace/bottelegram/WebContent/WEB-INF/lib/okhttp-3.8.1.jar"/>
+	<classpathentry kind="lib" path="D:/devstudio12/workspace/bottelegram/WebContent/WEB-INF/lib/okio-1.13.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
