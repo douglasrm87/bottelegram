@@ -5,6 +5,7 @@ import com.pengrad.telegrambot.model.Message;
 public class ComandoTelegram {
 
 	private static final String INFORMAR_O_IP_OU_PAT = "Informar o IP ou PAT";
+	private static final String INFORMAR_MATRICULA = "Informar a sua matricula (c0xxxxx)";
 	private static final String PING_4_N_1 = "ping -4 -n 1 ";
 	private static final String FUNCOES = "\nFunções:\n";
 
@@ -15,7 +16,8 @@ public class ComandoTelegram {
 	public final static String LOGIN = "2 - Informar matricula.\n";
 	public final static String VPN_CONECTADA = "3 - VPN de Home Office.\n";
 	public final static String PING_V4 = "4 - ping IP/PAT.\n";
-	public final static String vetOpcoes[] = { FUNCOES, AJUDA, LOGIN, VPN_CONECTADA, PING_V4 };
+	public final static String LIGAR_PC = "5 - Ligar PC.\n";
+	public final static String vetOpcoes[] = { FUNCOES, AJUDA, LOGIN, VPN_CONECTADA, PING_V4, LIGAR_PC };
 
 	private String montarMensagemRetorno(Message msgTelegram) {
 		StringBuilder msgRetorno = new StringBuilder();
@@ -35,14 +37,27 @@ public class ComandoTelegram {
 			break;
 
 		case 3:
-			msg.append(FORCE_POINT);
+			if (complementoComando != null) {
+				ComandoVPNConectada comVPN = new ComandoVPNConectada();
+				msg.append(comVPN.localizarVPN(complementoComando));
+			} else {
+				msg.append(INFORMAR_MATRICULA);
+			}
+
 			break;
 
 		case 4:
 			if (complementoComando != null) {
 				ComandoPing ping = new ComandoPing();
-				// msg.append(ping.processar("ping -4 -n 1 L00000221"));
 				msg.append(ping.processar(PING_4_N_1 + complementoComando));
+			} else {
+				msg.append(INFORMAR_O_IP_OU_PAT);
+			}
+			break;
+		case 5:
+			if (complementoComando != null) {
+				ComandoWakeOnLAN ligar = new ComandoWakeOnLAN();
+				ligar.ligarDesktop(complementoComando);
 			} else {
 				msg.append(INFORMAR_O_IP_OU_PAT);
 			}

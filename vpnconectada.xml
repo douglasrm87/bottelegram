@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<vpnconectada>
+		<matricula>c050063</matricula>
+		<vpn>Junos</vpn>
+	</vpnconectada>
+	<vpnconectada>
+		<matricula>c049463</matricula>
+		<vpn>ForcePoint</vpn>
+	</vpnconectada>
+	<vpnconectada>
+		<matricula>t12345</matricula>
+		<vpn>Angar51</vpn>
+	</vpnconectada>
+</list>

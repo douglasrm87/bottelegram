@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<desktop>
+		<pat>L00000221</pat>
+		<mac>64-1C-67-82-EF-F1</mac>
+		<broadcastlan>192.168.15.255</broadcastlan>
+	</desktop>
+
+	<desktop>
+		<pat>Douglas-PC</pat>
+		<mac>00-23-5A-73-D2-8B</mac>
+		<broadcastlan>192.168.15.255</broadcastlan>
+	</desktop>
+</list>
