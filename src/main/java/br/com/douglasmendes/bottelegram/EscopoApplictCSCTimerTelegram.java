@@ -1,6 +1,8 @@
 package br.com.douglasmendes.bottelegram;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -14,7 +16,7 @@ public class EscopoApplictCSCTimerTelegram implements Serializable {
 	private int delay = 4000; // delay de 4 seg.
 	private int interval = 4000; // intervalo de 4 seg.
 	private FluxoTelegram webTelegram = new FluxoTelegram();
-
+	public static Map<Long, InteracaoComando>  mapaClienteComando = new HashMap<>();
 	@PostConstruct
 	public void iniciarOuvinteTelegram() {
 		System.out.println("Iniciando CSC BOT Telegram.");

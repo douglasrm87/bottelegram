@@ -1,8 +1,9 @@
 package br.com.douglasmendes.bottelegram;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import com.copel.scs.SCSAPI;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.Update;
@@ -14,6 +15,7 @@ import com.pengrad.telegrambot.response.BaseResponse;
 import com.pengrad.telegrambot.response.GetUpdatesResponse;
 import com.pengrad.telegrambot.response.SendResponse;
 
+//https://web.telegram.org/#/im?p=@cscpr_bot
 public class FluxoTelegram {
 	private static final String TOKEN_TELEGRAM_PUBLICADOR = "1015053732:AAHWzTrMTCCSEmjoFELpVT8XYcbOQH6dvB4";
 	TelegramBot botTelegram = new TelegramBot(TOKEN_TELEGRAM_PUBLICADOR);
@@ -35,36 +37,52 @@ public class FluxoTelegram {
 		// análise de cada ação da mensagem
 		if (updates != null) {
 			for (Update update : updates) {
+				Long idUsuario = update.message().chat().id();
+				String nomeUsuario = update.message().chat().firstName();
+				String mensagem = update.message().text();
+
+				boolean retComando = validarComandoRecebido(update.message());
+				int idComando = 0;
+				InteracaoComando usuarioExistente = null;
+				usuarioExistente = EscopoApplictCSCTimerTelegram.mapaClienteComando.get(idUsuario);
+				if (retComando) {
+					idComando = Integer.parseInt(mensagem);
+					if (usuarioExistente == null) {
+						EscopoApplictCSCTimerTelegram.mapaClienteComando.put(idUsuario,
+								new InteracaoComando(idUsuario, nomeUsuario, idComando, null));
+					} else {
+						usuarioExistente.setIdComando(idComando);
+					}
+				} else {
+					if (usuarioExistente != null) {
+						usuarioExistente.setComplementoComando(update.message().text());
+						idComando = usuarioExistente.getIdComando();
+					}
+				}
 				// atualização do off-set
 				this.offSetAtributo = update.updateId() + 1;
 
-				System.out.println("Recebendo mensagem:" + update.message().text());
-				System.out.println("Nome usuario Telegram:" + update.message().chat().firstName());
-				System.out.println("Nome usuario Telegram:" + update.message().chat().firstName());
+				System.out.println("Recebendo mensagem:" + /* update.message().text() */mensagem);
+				System.out.println("Nome usuario Telegram:" + /* update.message().chat().firstName() */nomeUsuario);
 
 				// envio de "Escrevendo" antes de enviar a resposta
-				baseResponse = this.botTelegram
-						.execute(new SendChatAction(update.message().chat().id(), ChatAction.typing.name()));
+				baseResponse = this.botTelegram.execute(
+						new SendChatAction(/* update.message().chat().id() */idUsuario, ChatAction.typing.name()));
 
 				// verificação de ação de chat foi enviada com sucesso
 				System.out.println("Resposta de Chat Action Enviada?" + baseResponse.isOk());
 
-				boolean retComando = validarComandoRecebido(update.message());
-				if (retComando) {
-					// envio da mensagem de resposta
-					int idComando = Integer.parseInt(update.message().text());
-					String msgRetornadaCliente = processarComandoGeral(idComando, update.message());
-					sendResponse = this.botTelegram
-							.execute(new SendMessage(update.message().chat().id(), msgRetornadaCliente));
-					// verificação de mensagem enviada com sucesso
-					System.out.println("Mensagem Enviada?" + sendResponse.isOk());
+				// envio da mensagem de resposta
+				String msgRetornadaCliente = "";
+				if (usuarioExistente != null) {
+					msgRetornadaCliente = processarComandoGeral(idComando, nomeUsuario,
+							usuarioExistente.getComplementoComando());
 				} else {
-					String ret = processarComandoGeral(0, update.message());
-					// envio da mensagem de resposta
-					sendResponse = this.botTelegram.execute(new SendMessage(update.message().chat().id(), ret));
-					// verificação de mensagem enviada com sucesso
-					System.out.println("Mensagem Enviada?" + sendResponse.isOk());
+					msgRetornadaCliente = processarComandoGeral(idComando, nomeUsuario, null);
 				}
+				sendResponse = this.botTelegram.execute(new SendMessage(idUsuario, msgRetornadaCliente));
+				// verificação de mensagem enviada com sucesso
+				System.out.println("Mensagem Enviada?" + sendResponse.isOk());
 			}
 		}
 	}
@@ -78,9 +96,9 @@ public class FluxoTelegram {
 		return true;
 	}
 
-	private String processarComandoGeral(int idComando, Message msgTelegram) {
+	private String processarComandoGeral(int idComando, String nomeUsuario, String complemento) {
 		ComandoTelegram obj = new ComandoTelegram();
-		return obj.processarComando(idComando, msgTelegram.chat().firstName());
+		return obj.processarComando(idComando, nomeUsuario, complemento);
 
 	}
 }
