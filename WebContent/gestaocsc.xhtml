@@ -1,32 +1,35 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head>
 
-</h:head>
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</h:head>
+	<h:form>
+		<h:body>
+			<br> </br>
+			<h:commandButton value="Testar Gestao"
+				action="#{gestao.testeGestao()}" />
+			<br> </br>
+			<h:dataTable var="atendimento" value="#{gestao.listaGestaoJSF}">
 
-<h:body>
-	<br> </br>
-	<h:outputText value="Estrutura básica de uma tela JSF" />
-	<br> </br>
-	<h:commandButton value="Gestao" action="#{gestao.testeGestao()}" />
-	<br> </br>
-
-	<br> </br>
-	<h:commandButton value="Testar JSF" action="#{tst.testeMet()}" />
-	<br> </br>
-
-
-	<p:dataTable var="tabelabot" value="#{gestao.listaGestaoJSF}" rows="20"
-		paginator="true" rowsPerPageTemplate="50,50" style="margin-top:10px;">
-		<f:facet name="header">
-			<h:outputText value="Atendimentos realizados via ChatBot:" />
-		</f:facet>
-		
-	</p:dataTable>
-
-
-</h:body>
-</html>
+				<f:facet name="header">
+                      Atendimento realizados via Telegram ChatBot:  #{gestao.listaGestaoJSF.size()}
+             	</f:facet>
+				<p:column headerText="Matricula" sortBy="#{atendimento.matricula}">
+					<h:outputText value="#{atendimento.matricula}" />
+				</p:column>
+				<p:column headerText="Patrimônio Desktop"
+					sortBy="#{atendimento.pat}">
+					<h:outputText value="#{atendimento.pat}" />
+				</p:column>
+			</h:dataTable>
+		</h:body>
+	</h:form>
+</ui:composition>

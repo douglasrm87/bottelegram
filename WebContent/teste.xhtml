@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">
+ 
+<h:head>
+ 
+</h:head>
+ 
+<h:body>
+ 
+   <p:dataTable var="cliente" value="#{gestao.listaGestaoJSF}">
+     <p:column headerText="Nome">
+            <h:outputText value="nome" />
+     </p:column>
+ 
+     <p:column headerText="Endereço">
+            <h:outputText value="endereco" />
+     </p:column>
+ 
+     <p:column headerText="Idade">
+            <h:outputText value=" idade" />
+     </p:column>
+ 
+     <p:column headerText="Descrição">
+            <h:outputText value="descricao" />
+     </p:column>
+ 
+     <p:column headerText="Telefone">
+            <h:outputText value="telefone" />
+     </p:column>
+                    
+
+                        
+   </p:dataTable>
+ 
+ 
+ 
+</h:body>
+</html>

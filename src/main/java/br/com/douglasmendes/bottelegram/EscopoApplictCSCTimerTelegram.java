@@ -2,6 +2,7 @@ package br.com.douglasmendes.bottelegram;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,12 +26,14 @@ public class EscopoApplictCSCTimerTelegram implements Serializable {
 	private FluxoTelegram webTelegram = new FluxoTelegram();
 
 	public static Map<Long, InteracaoComando> mapaClienteComando = new HashMap<>();
+	public static List<GestaoAtendimento> listaGestao = new ArrayList<>();
 
 	@PostConstruct
 	public void iniciarOuvinteTelegram() {
 		System.out.println("***********************************");
 		System.out.println("Iniciando CSC BOT Telegram.");
 		System.out.println("***********************************");
+		
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
 			public void run() {

@@ -1,22 +1,22 @@
 package br.com.douglasmendes.bottelegram;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 import br.com.douglasmendes.bottelegram.comando.dto.GestaoAtendimento;
+
 //http://localhost:8080/bottelegram/gestaocsc.jsf
-@ViewScoped
+@SessionScoped
 @ManagedBean(name = "gestao")
 public class GestaoAtendimentoCSC {
+
 	private List<GestaoAtendimento> listaGestaoJSF = new ArrayList<>();
 
 	public List<GestaoAtendimento> getListaGestaoJSF() {
-		////	public static List<GestaoAtendimento> listaGestao = new ArrayList<>();
-//		this.listaGestaoJSF = EscopoApplictCSCTimerTelegram.listaGestao;
 		return this.listaGestaoJSF;
 	}
 
@@ -25,6 +25,14 @@ public class GestaoAtendimentoCSC {
 	}
 
 	public void testeGestao() {
-		System.out.println("Teste Gestao");
+		System.out.println("Teste gestao");
 	}
+
+	public GestaoAtendimentoCSC() {
+		super();
+		this.listaGestaoJSF.add(new GestaoAtendimento("123", "456", "teste", new Date()));
+		this.listaGestaoJSF.add(new GestaoAtendimento("123", "456", "teste", new Date()));
+		this.listaGestaoJSF.add(new GestaoAtendimento("123", "456", "teste", new Date()));
+	}
+
 }
