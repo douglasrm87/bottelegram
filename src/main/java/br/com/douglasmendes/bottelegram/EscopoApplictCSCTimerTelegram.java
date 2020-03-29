@@ -21,7 +21,7 @@ public class EscopoApplictCSCTimerTelegram implements Serializable {
 	private int delay = 4000; // delay de 4 seg.
 	private int interval = 4000; // intervalo de 4 seg.
 	private FluxoTelegram webTelegram = new FluxoTelegram();
-
+ 
 	public static Map<Long, InteracaoComando> mapaClienteComando = new HashMap<>();
 	public static List<GestaoAtendimento> listaGestao = new ArrayList<>();
 
