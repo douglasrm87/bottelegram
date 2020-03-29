@@ -22,9 +22,11 @@ public class EscopoApplictCSCTimerTelegram implements Serializable {
 	private int interval = 4000; // intervalo de 4 seg.
 	private FluxoTelegram webTelegram = new FluxoTelegram();
  
+	
+	private List<GestaoAtendimento> listaGestaoJSF = new ArrayList<>();
 	public static Map<Long, InteracaoComando> mapaClienteComando = new HashMap<>();
 	public static List<GestaoAtendimento> listaGestao = new ArrayList<>();
-
+	
 	@PostConstruct
 	public void iniciarOuvinteTelegram() {
 		System.out.println("Iniciando CSC BOT Telegram.");
@@ -48,12 +50,14 @@ public class EscopoApplictCSCTimerTelegram implements Serializable {
 		super();
 	}
 
-	public static List<GestaoAtendimento> getListaGestao() {
-		return listaGestao;
+	public List<GestaoAtendimento> getListaGestaoJSF() {
+		return this.listaGestaoJSF;
 	}
 
-	public static void setListaGestao(List<GestaoAtendimento> listaGestao) {
-		EscopoApplictCSCTimerTelegram.listaGestao = listaGestao;
+	public void setListaGestaoJSF(List<GestaoAtendimento> listaGestaoJSF) {
+		this.listaGestaoJSF = listaGestaoJSF;
 	}
+ 
+
 
 }

@@ -11,14 +11,21 @@
 	<br> </br>
 	<h:outputText value="Estrutura básica de uma tela JSF" />
 	<br> </br>
+	<h:commandButton value="Gestao" action="#{gestao.testeGestao()}" />
+	<br> </br>
+
+	<br> </br>
 	<h:commandButton value="Testar JSF" action="#{tst.testeMet()}" />
 	<br> </br>
 
-	<p:dataTable var="cliente" value=" ">
 
-
+	<p:dataTable var="tabelabot" value="#{gestao.listaGestaoJSF}" rows="20"
+		paginator="true" rowsPerPageTemplate="50,50" style="margin-top:10px;">
+		<f:facet name="header">
+			<h:outputText value="Atendimentos realizados via ChatBot:" />
+		</f:facet>
+		
 	</p:dataTable>
-
 
 
 </h:body>
