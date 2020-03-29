@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+<h:head>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+	</f:facet>
+	<title>#{lblAplicativo.siglaSistema} - <h:outputText
+			value=" #{lblAplicativo.nomeSistema}" /><ui:insert
+			name="tituloJanela"></ui:insert></title>
+
+	<ui:insert name="head" />
+</h:head>
+
+<h:body>
+
+	<p:outputPanel id="painel-tema" style="display:block;"
+		styleClass="#{beanConfigurarTema.obterTema()}">
+		<div id="menu-mask"></div>
+
+
+		<ui:include src="layoutmenu.xhtml" />
+		<ui:include src="topbar.xhtml" />
+
+		<div id="layout-portlets-cover" class="conteudoLateral">
+
+			<o:form id="formMsg" acceptcharset="ISO-8859-1"
+				enctype="multipart/form-data" includeViewParams="true"
+				useRequestURI="true">
+				<p:outputLabel id="targetScroll" value="teste" style="display:none;" />
+				<p:messages id="globalMessage" globalOnly="true" closable="true">
+					<p:autoUpdate />
+				</p:messages>
+			</o:form>
+
+
+			<ui:insert name="content">
+                Template
+            </ui:insert>
+
+			<ui:remove>
+				<ui:include src="footer.xhtml" />
+			</ui:remove>
+		</div>
+	</p:outputPanel>
+
+
+
+	<h:outputStylesheet name="css/core-layout.css" library="spark-layout" />
+	<h:outputStylesheet name="css/font-awesome.css" library="spark-layout" />
+	<h:outputStylesheet name="css/animate.css" library="spark-layout" />
+	<h:outputStylesheet name="css/spark-layout-orange.css"
+		library="spark-layout" />
+	<h:outputStylesheet name="css/pic-child.css" library="spark-layout" />
+
+	<h:outputStylesheet name="css/sistema.css" library="sistema" />
+	<h:outputStylesheet name="css/light-orange.css" library="sistema" />
+
+	<!-- modais -->
+	<ui:insert name="formModal"></ui:insert>
+
+	<ui:include src="/includes/modalSair.xhtml" />
+	<ui:include src="/includes/modalSobre.xhtml" />
+	<ui:include src="/includes/modalExclusao.xhtml" />
+
+
+	<ui:include src="/includes/modalAguarde.xhtml" />
+	<ui:remove>
+		<ui:decorate template="/includes/modalAguarde.xhtml">
+			<ui:define name="modalStatus">
+				<ui:insert name="conteudoStatus" />
+			</ui:define>
+			<ui:define name="modalEstado">
+				<ui:insert name="conteudoEstado" />
+			</ui:define>
+		</ui:decorate>
+	</ui:remove>
+
+
+
+	<ui:include src="/includes/modalIdle.xhtml" />
+	<ui:include src="/includes/psw/chatelia.xhtml" />
+
+	<!-- fim das modais -->
+	<p:ajaxStatus id="ajaxStatusPanel" onstart="showAguardeWindow();"
+		onsuccess="hideAguardeWindow();" />
+	
+	<!-- Se ficar 58 min inativo (sem o usuário interagir com a tela) mostrar a dialog idleDialog -->
+	<p:idleMonitor timeout="3480000" onidle="PF('idleDialog').show();" />
+
+	<!-- Deixar o js no final do body melhora o desempenho. Ver algaworks js e livro jQuery. Fazendo isso o download de recursos nao e interrompido quando encontrar algum .js Aqui a pagina ja foi carregada -->
+
+	<h:outputScript name="js/layout.js" library="spark-layout" />
+	<h:outputScript name="js/locale-primefaces.js" library="sistema" />
+	<h:outputScript name="js/aguarde.js" library="sistema" />
+	<h:outputScript name="js/utils.js" library="sistema" />
+	<h:outputScript name="js/jquery.maskMoney.0.2.js" library="sistema" />
+
+
+	<!-- Caso seja necessÃ¡rio incluir algum .js em uma pÃ¡gina especÃ­fica -->
+	<ui:insert name="body" />
+
+	<div style="clear: both"></div>
+</h:body>
+
+</html>

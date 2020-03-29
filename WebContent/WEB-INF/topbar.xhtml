@@ -1,0 +1,96 @@
+﻿<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<style>
+.invertido {
+	background-color: #00079c !important;
+}
+
+.invertido  #layout-topbar-menu a, .ui-commandlink {
+	color: white !important;
+}
+
+.invertido i {
+	color: white !important;
+}
+
+.invertido li {
+	color: white !important;
+}
+.alerta {
+	color: red !important;
+}
+</style>
+
+	<p:outputPanel id="painel-topbar">
+		<div id="layout-topbar"
+			class="ShadowGray #{beanVerificarAcessoDuplicado.acessoDuplicado ? 'invertido' : ''}">
+			<div id="layout-topbar-indent">
+				<a href="#{request.contextPath}/"><h:graphicImage
+						name="images/#{beanVerificarAcessoDuplicado.acessoDuplicado? 'white_logo.png': 'logo-copel.png'}"
+						styleClass="Fleft" library="spark-layout" id="logo" class="Fleft" /></a>
+				<div id="menu-mask"></div>
+				<a href="#" id="mobile-menu-button"
+					class="BordRad3 white ShowOnMobile MenuLateralMobile"><i
+					class="fa fa-bars"></i> #{lblAplicativo.lblMenuMenu}</a> <a href="#"
+					id="mobile-menu-button-gray" class="BordRad3 white ShowOnMobile"><i
+					class="fa fa-caret-down"></i> #{lblAplicativo.lblMenuTopMenu}</a>
+
+				<ul id="layout-topbar-menu">
+
+					<li><h:form>
+							<p:selectBooleanCheckbox styleClass="Animated05"
+								value="#{beanConfigurarTema.lightOrange}">
+								<p:ajax event="change" update="painel-tema" />
+							</p:selectBooleanCheckbox>
+						</h:form></li>
+
+					<li class="fa fa-ellipsis-v menu-separator"></li>
+
+					<li>
+						<!-- botao sair --> <p:commandLink styleClass="Animated05"
+							ajaxSingle="true" onclick="PF('sairModal').show();">
+							<i class="fa fa-sign-out"></i> #{lblAplicativo.lblMenuAuxiliarSair}
+					</p:commandLink>
+					</li>
+
+					<li class="fa fa-ellipsis-v menu-separator"></li>
+
+					<li>
+						<!-- botao sobre --> <p:commandLink styleClass="Animated05"
+							ajaxSingle="true" onclick="PF('sobreModal').show();">
+							<i class="fa fa-info-circle"></i> #{lblAplicativo.lblMenuAuxiliarSobre}
+					</p:commandLink>
+					</li>
+
+					<li class="fa fa-ellipsis-v menu-separator"></li>
+
+					<li><a class="Fright Fs15 TexAlRight"><i
+							class="fa fa-user"></i> #{lblAplicativo.lblMenuAuxiliarBemVindo}
+							#{beanSeguranca.nomeUsualUsuarioLogado}<i
+							class="fa fa-chevron-down Fs14 Fright ShowOnMobile"></i></a></li>
+					
+					<p:outputPanel rendered="#{!beanSeguranca.ambienteProducao}">		
+
+					<li><a class="Fright Fs15 TexAlRight"><i
+							class="fa fa-warning alerta"></i> <i class="alerta">AMBIENTE DE HOMOLOGAÇÃO </i><i
+							class="fa fa-chevron-down Fs14 Fright ShowOnMobile"></i></a></li>
+							
+					<li class="fa fa-ellipsis-v menu-separator"></li>
+						</p:outputPanel>
+				</ul>
+			</div>
+		</div>
+	</p:outputPanel>
+
+	<h:form>
+		<p:remoteCommand update="painel-topbar" ignoreAutoUpdate="true"
+			global="false" async="true" autoRun="true"
+			action="#{beanVerificarAcessoDuplicado.verificarAcessoDuplicado()}" />
+	</h:form>
+
+
+</ui:composition>

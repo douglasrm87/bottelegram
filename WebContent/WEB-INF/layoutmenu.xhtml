@@ -1,0 +1,231 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ps="http://primefaces.org/spark"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<h:form styleClass="menuLateral">
+		<p:panelMenu toggleable="true" responsive="true" id="menuResponsive">
+
+			<f:facet name="options">
+				<ui:remove>
+					<p:commandButton type="button" icon="fa fa-search Fs18 white"
+						styleClass="Fright" />
+					<p:inputText placeholder="Search" styleClass="Fright" />
+				</ui:remove>
+			</f:facet>
+
+
+			<p:separator />
+
+
+
+			<p:submenu label="Centro de Operações" styleClass="flow"
+				rendered="#{beanSeguranca.acessoQuadroAviso}">
+				<p:submenu label="#{lblAplicativo.lblMenuOrdemServico}">
+
+					<p:menuitem value="Pesquisa" icon="fa fa-search"
+						url="/paginas/gos/pesquisarOS.jsf" />
+
+					<p:submenu label="#{lblAplicativo.lblMenuCadastroOS}"
+						rendered="#{beanSeguranca.isAcessoFuncionalidadeDiagnosticoGPON()}">
+
+						<p:menuitem value="#{lblAplicativo.lblMenuCadastrarOSEquipamento}"
+							url="/paginas/gos/os/cadastro/cadastrarOSEquipamento.jsf"
+							icon="fa fa-laptop" />
+
+
+						<p:menuitem value="#{lblAplicativo.lblMenuCadastrarOSCTEOutros}"
+							url="/paginas/gos/os/cadastro/cadastrarOSCircuitosCTEOutros.jsf"
+							icon="fa fa-sitemap" />
+
+						<p:menuitem value="#{lblAplicativo.lblMenuCadastrarOSTelefonica}"
+							url="/paginas/gos/os/cadastro/cadastrarOSTelefonica.jsf"
+							icon="fa fa-phone" />
+
+						<p:menuitem value="#{lblAplicativo.lblMenuCadastrarOSVHF}"
+							url="/paginas/gos/os/cadastro/cadastrarOSVHF.jsf"
+							icon="fa fa-wifi" />
+					</p:submenu>
+
+				</p:submenu>
+
+				<p:submenu label="#{lblAplicativo.lblMenuOSMestre}">
+					<p:menuitem value="#{lblAplicativo.lblMenuCadastroOSMestre}"
+						icon="fa fa-suitcase"
+						url="/paginas/gos/osMestre/cadastro/cadastrarOSMestre.jsf" />
+
+					<p:menuitem value="Pesquisa" icon="fa fa-search"
+						url="/paginas/gos/osMestre/pesquisarOSMestre.jsf" />
+				</p:submenu>
+
+				<p:submenu label="#{lblAplicativo.lblMenuGOSDashboard}"
+					styleClass="flow">
+					<p:menuitem value="#{lblAplicativo.lblMenuGOSDashboard}"
+						icon="fa fa-dashboard" url="/paginas/gos/dashboard/dashboard.jsf" />
+
+					<p:menuitem value="#{lblAplicativo.lblMenuGOSDashboard48Horas}"
+						icon="fa fa-clock-o"
+						url="/paginas/gos/dashboard/dashboardUlt48horas.jsf" />
+				</p:submenu>
+
+				<p:submenu label="#{lblAplicativo.lblMenuRelatorios}"
+					styleClass="flow">
+
+					<p:menuitem value="#{lblAplicativo.lblMenuRelatorioChamadosFrequentes}"
+						rendered="#{beanSeguranca.acessoFuncionalidadeRelatorioChamadosFrequentes}"
+						icon="fa fa-area-chart" url="/paginas/gos/relatorio/relatorioChamadosFrequentes.jsf" />
+
+					<p:menuitem value="#{lblAplicativo.lblMenuDesacordo}"
+						rendered="#{beanSeguranca.acessoFuncionalidadePesquisaDesacordo}"
+						icon="fa fa-table" url="/paginas/gos/pesquisaDesacordo.jsf" />
+
+					<p:menuitem value="#{lblAplicativo.lblMenuRelatorioVHF}"
+						icon="fa fa-wifi"
+						url="/paginas/gos/relatorio/geracaoRelatorioVHF.jsf" />
+				</p:submenu>
+
+				<p:submenu label="#{lblAplicativo.lblMenuGOSCadastros}"
+					rendered="#{beanSeguranca.isAcessoMenuCadastros()}">
+
+					<p:menuitem value="#{lblAplicativo.lblMenuGOSCadastroCausaAtraso}"
+						url="/paginas/gos/cadastros/cadastroCausaAtraso.jsf"
+						rendered="#{beanSeguranca.isAcessoFuncionalidadeManterCausaAtraso()}" />
+
+					<p:menuitem value="#{lblAplicativo.lblMenuGOSCadastroCausaFalha}"
+						url="/paginas/gos/cadastros/cadastroCausaFalha.jsf"
+						rendered="#{beanSeguranca.isAcessoFuncionalidadeManterCausaFalha()}" />
+
+					<p:menuitem value="#{lblAplicativo.lblMenuGOSCadastroDestSMS}"
+						url="/paginas/gos/cadastros/cadastroDestinatarioSMS.jsf"
+						rendered="#{beanSeguranca.isAcessoFuncionalidadeManterDestinatariosSMS()}" />
+
+					<p:menuitem
+						value="#{lblAplicativo.lblMenuGOSCadastroMotivoAberturaOS}"
+						url="/paginas/gos/cadastros/cadastroMotivoAberturaOS.jsf"
+						rendered="#{beanSeguranca.isAcessoFuncionalidadeManterMotivoAberturaOSContratoEquipamento()}" />
+
+					<p:menuitem
+						value="#{lblAplicativo.lblMenuGOSCadastroMotivoDesacordo}"
+						url="/paginas/gos/cadastros/cadastroMotivoDesacordo.jsf"
+						rendered="#{beanSeguranca.isAcessoFuncionalidadeManterMotivoDesacordo()}" />
+
+					<p:menuitem
+						value="#{lblAplicativo.lblMenuGOSCadastroProfissionalPolo}"
+						url="/paginas/gos/cadastros/cadastroProfissionalPolo.jsf"
+						rendered="#{beanSeguranca.isAcessoFuncionalidadeManterProfissionalPolo()}" />
+
+					<p:menuitem value="#{lblAplicativo.lblMenuGOSCadastroPolos}"
+						url="/paginas/gos/cadastros/cadastroPolo.jsf"
+						rendered="#{beanSeguranca.isAcessoFuncionalidadeManterPolo()}" />
+
+					<p:menuitem
+						value="#{lblAplicativo.lblMenuGOSCadastroPolosOrganograma}"
+						url="/paginas/gos/cadastros/cadastroPoloOrganograma.jsf"
+						rendered="#{beanSeguranca.isAcessoFuncionalidadeManterPoloOrganograma()}" />
+
+					<p:menuitem value="#{lblAplicativo.lblMenuGOSCadastroSolucao}"
+						url="/paginas/gos/cadastros/cadastroSolucao.jsf"
+						rendered="#{beanSeguranca.isAcessoFuncionalidadeManterSolucaoParaFalha()}" />
+
+					<p:menuitem
+						value="#{lblAplicativo.lblMenuGOSCadastroTempoMaximaAtendimento}"
+						url="/paginas/gos/cadastros/cadastroTempoMaximoAtendimento.jsf"
+						rendered="#{beanSeguranca.isAcessoFuncionalidadeManterTempoMaximoAtendimento()}" />
+
+					<p:menuitem
+						value="#{lblAplicativo.lblMenuGOSCadastroAssociacaoTempoMaximoTipoSolicitacao}"
+						url="/paginas/gos/cadastros/cadastroAssociacaoTempoMaximoTipoSolicitacao.jsf"
+						rendered="#{beanSeguranca.isAcessoFuncionalidadeAssociarTempoTipoSolicitacao()}" />
+				</p:submenu>
+
+			</p:submenu>
+
+			<p:separator />
+
+			<p:submenu label="Contact Center" styleClass="flow">
+
+				<p:menuitem value="Atendimento" icon="fa fa-headphones"
+					url="/paginas/psw/atendimento/atendimento.jsf" />
+
+				<p:menuitem value="Pesquisa OS" icon="fa fa-cogs"
+					url="/paginas/gos/pesquisarOS.jsf" />
+
+				<p:menuitem value="Diagnóstico" icon="fa fa-cogs"
+					url="/paginas/psw/diagnostico/diagnostico.jsf" />
+
+				<p:menuitem value="Manuais Técnicos" icon="fa fa-envelope"
+					url="/paginas/psw/atendimento/manuaistecnicos.jsf" />
+
+				<p:menuitem value="Serviços Convencionais" icon="fa fa-envelope"
+					url="/paginas/psw/atendimento/servicosconvencionais.jsf" />
+
+				<p:menuitem value="Ativos Técnicos" icon="fa fa-envelope"
+					url="/paginas/psw/atendimento/ativostecnicos.jsf" />
+
+				<p:menuitem value="Abertura de chamado Não Cliente"
+					url="/paginas/gos/os/cadastro/cadastrarOSEquipamento.jsf"
+					icon="fa fa-laptop" />
+
+			</p:submenu>
+
+
+			<p:submenu label="ELIA" styleClass="flow"
+				rendered="#{beanSeguranca.acessoAdministrativo}">
+				<p:menuitem value="Chat ELIA" icon="fa fa-comments-o"
+					url="/paginas/elia/roboeliachat.jsf" target="_blank" />
+				<p:menuitem value="Classificar Diálogos" icon="fa fa-comment"
+					url="/paginas/elia/roboeliaclassificar.jsf" target="_blank" />
+				<p:menuitem value="Editar Diálogos" icon="fa fa-pencil-square-o"
+					url="/paginas/elia/roboeliaeditar.jsf" target="_blank" />
+				<p:menuitem value="Adicionar Diálogos" icon="fa fa-upload"
+					url="/paginas/elia/roboeliaadicaodialogos.jsf" target="_blank" />
+				<p:menuitem value="Treinamento de Modelos" icon="fa fa-cogs"
+					url="/paginas/elia/roboeliatreinamento.jsf" target="_blank" />
+				<p:menuitem value="Contagem de Diálogos" icon="fa fa-calculator"
+					url="/paginas/elia/roboeliacontagem.jsf" target="_blank" />
+				<p:menuitem value="Domínio ELIA" icon="fa fa-sitemap"
+					url="/paginas/elia/roboeliadominio.jsf" target="_blank" />
+				<p:menuitem value="Agendamento Digital"
+					icon="fa fa-calendar-check-o"
+					url="/paginas/elia/agendamentoDigital.jsf" target="_blank" />
+				<p:menuitem value="Chat ELIA - Bate-Papo" icon="fa fa-comments-o"
+					onclick="PF('ELIADialog').show()" />
+				<p:menuitem value="ELIA - ChatLOG" icon="fa fa-file-text-o"
+					url="/paginas/elia/roboeliachatlog.jsf" target="_blank" />
+
+			</p:submenu>
+
+			<p:submenu label="ELIA DialogFlow" styleClass="flow"
+				rendered="#{beanSeguranca.acessoAdministrativo}">
+				<p:menuitem value="Chat ELIA" icon="fa fa-comments-o"
+					target="_blank" url="/paginas/eliadialogflow/roboeliachatdflow.jsf" />
+				<p:menuitem value="Treinamento de Modelos" icon="fa fa-cogs"
+					target="_blank"
+					url="/paginas/eliadialogflow/roboeliatreinamento.jsf" />
+
+			</p:submenu>
+			<p:submenu label="Estatísticas" styleClass="flow"
+				rendered="#{beanSeguranca.acessoAdministrativo}">
+				<p:menuitem value="Autenticações" icon="fa fa-users"
+					url="/paginas/psw/acesso/acesso.jsf" />
+			</p:submenu>
+			<p:submenu label="Configurações" styleClass="flow"
+				rendered="#{beanSeguranca.acessoAdministrativo}">
+				<p:menuitem value="Messenger" icon="fa fa-cogs"
+					url="/paginas/psw/messenger/messenger.jsf" />
+				<p:menuitem value="Infinispan Messenger Conteúdo" icon="fa fa-cogs"
+					url="/paginas/psw/messenger/messengerInfinispan.jsf" />
+			</p:submenu>
+
+			<p:submenu label="Funções administrativas" styleClass="flow"
+				rendered="#{beanSeguranca.acessoAdministrativo}">
+				<p:menuitem value="Mensagens WFM" icon="fa fa-user-ninja"
+					url="/paginas/gos/administrativo/TesteMsgWFM.jsf" />
+
+				<p:menuitem value="Diversos" icon="fa fa-user-ninja"
+					url="/paginas/gos/administrativo/diversosFuncoesAdministrativas.jsf" />
+			</p:submenu>
+		</p:panelMenu>
+	</h:form>
+</ui:composition>

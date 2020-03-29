@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE facelet-taglib PUBLIC "-//Sun Microsystems, Inc.//DTD Facelet Taglib 1.0//EN"
+                                "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+<facelet-taglib>
+ <namespace>http://facelets.copel.com</namespace>
+ <tag>
+  <tag-name>colunaTotalTabelaCopel</tag-name>
+  <source>../../taglibsCOPEL/colunaTotalTabelaCopel.xhtml</source>
+ </tag>
+ <tag>
+  <tag-name>richDataScrollerCopel</tag-name>
+  <source>../../taglibsCOPEL/richDataScrollerCopel.xhtml</source>
+ </tag>
+ <tag>
+  <tag-name>colunaBotoesTabelaGenericaCopel</tag-name>
+  <source>../../taglibsCOPEL/colunaBotoesTabelaGenericaCopel.xhtml</source>
+ </tag>
+ <tag>
+  <tag-name>marcadorCampoObrigatorio</tag-name>
+  <source>../../taglibsCOPEL/marcadorCampoObrigatorio.xhtml</source>
+ </tag>
+</facelet-taglib>

@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+
+
+	<ui:define name="tituloJanela">
+		<h:outputText value="Gestão ChatBOT CSC" />
+	</ui:define>
+	<ui:define name="content">
+
+		<h:form id="form-chatbotcsc">
+			<p:outputPanel id="painel-pesquisa" style="display:block">
+				<div class="layout-portlets-box">
+					<div class="Container100 ui-fluid">
+						<div class="ContainerIndent">
+							<h1 class="BigTopic">
+								<h:outputText
+									value="Gestão de atendimentos do CSC via ChatBOT Telegram" />
+							</h1>
+
+							<p:outputPanel id="tabela-contratos" style="display:block">
+								<p:dataTable var="atendimento" value="#{telegram.listaGestao}"
+									rows="20" paginator="true" rowsPerPageTemplate="50,50"
+									style="margin-top:10px;">
+									<f:facet name="header">
+										<h:outputText
+											value="Atendimento realizados via ChatBot: #{telegram.listaGestao.size()}" />
+									</f:facet>
+
+									<p:column headerText="Matricula"
+										sortBy="#{atendimento.matricula}">
+										<h:outputText value="#{atendimento.matricula}" />
+									</p:column>
+									<p:column headerText="Patrimônio" sortBy="#{atendimento.pat}">
+										<h:outputText value="#{atendimento.pat}" />
+									</p:column>
+
+									<p:column headerText="Funcionalidae"
+										sortBy="#{atendimento.comando}">
+										<h:outputText value="#{atendimento.comando}" />
+									</p:column>
+
+									<p:column headerText="Data solicitação"
+										sortBy="#{atendimento.dtHoraSolicitacao}">
+										<h:outputText value="#{atendimento.dtHoraSolicitacao}" />
+									</p:column>
+								</p:dataTable>
+							</p:outputPanel>
+						</div>
+					</div>
+				</div>
+			</p:outputPanel>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,4 +1,4 @@
-package br.com.douglasmendes.bottelegram;
+package br.com.douglasmendes.bottelegram.comando;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,6 +12,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
+
+import br.com.douglasmendes.bottelegram.comando.dto.VPNConectada;
 
 public class ComandoVPNConectada {
 	private List<VPNConectada> listaVPN = null;

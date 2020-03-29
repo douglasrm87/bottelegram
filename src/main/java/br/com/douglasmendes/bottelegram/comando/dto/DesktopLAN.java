@@ -1,4 +1,4 @@
-package br.com.douglasmendes.bottelegram;
+package br.com.douglasmendes.bottelegram.comando.dto;
 
 public class DesktopLAN {
 	private String pat;

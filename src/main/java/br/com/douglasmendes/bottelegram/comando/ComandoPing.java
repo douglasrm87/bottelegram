@@ -1,4 +1,4 @@
-package br.com.douglasmendes.bottelegram;
+package br.com.douglasmendes.bottelegram.comando;
 
 import java.io.IOException;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package br.com.douglasmendes.bottelegram;
+package br.com.douglasmendes.bottelegram.comando;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -11,6 +11,8 @@ import java.util.List;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
+
+import br.com.douglasmendes.bottelegram.comando.dto.DesktopLAN;
 
 public class ComandoWakeOnLAN {
 	public static final int PORT = 8080;

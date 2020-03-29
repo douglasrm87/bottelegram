@@ -1,4 +1,4 @@
-package br.com.douglasmendes.bottelegram;
+package br.com.douglasmendes.bottelegram.comando.dto;
 
 public class InteracaoComando {
 	private Long idUsuario;

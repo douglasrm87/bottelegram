@@ -1,8 +1,6 @@
 package br.com.douglasmendes.bottelegram;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Message;
@@ -14,6 +12,9 @@ import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.BaseResponse;
 import com.pengrad.telegrambot.response.GetUpdatesResponse;
 import com.pengrad.telegrambot.response.SendResponse;
+
+import br.com.douglasmendes.bottelegram.comando.CentralComandoTelegram;
+import br.com.douglasmendes.bottelegram.comando.dto.InteracaoComando;
 
 //https://web.telegram.org/#/im?p=@cscpr_bot
 public class FluxoTelegram {
@@ -97,7 +98,7 @@ public class FluxoTelegram {
 	}
 
 	private String processarComandoGeral(int idComando, String nomeUsuario, String complemento) {
-		ComandoTelegram obj = new ComandoTelegram();
+		CentralComandoTelegram obj = new CentralComandoTelegram();
 		return obj.processarComando(idComando, nomeUsuario, complemento);
 
 	}
