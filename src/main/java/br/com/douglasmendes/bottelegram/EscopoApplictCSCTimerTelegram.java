@@ -18,18 +18,19 @@ import br.com.douglasmendes.bottelegram.comando.dto.InteracaoComando;
 @ApplicationScoped
 @ManagedBean(name = "telegram", eager = true)
 public class EscopoApplictCSCTimerTelegram implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private int delay = 4000; // delay de 4 seg.
 	private int interval = 4000; // intervalo de 4 seg.
 	private FluxoTelegram webTelegram = new FluxoTelegram();
- 
-	
-	private List<GestaoAtendimento> listaGestaoJSF = new ArrayList<>();
+
 	public static Map<Long, InteracaoComando> mapaClienteComando = new HashMap<>();
-	public static List<GestaoAtendimento> listaGestao = new ArrayList<>();
-	
+
 	@PostConstruct
 	public void iniciarOuvinteTelegram() {
+		System.out.println("***********************************");
 		System.out.println("Iniciando CSC BOT Telegram.");
+		System.out.println("***********************************");
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
 			public void run() {
@@ -49,15 +50,5 @@ public class EscopoApplictCSCTimerTelegram implements Serializable {
 	public EscopoApplictCSCTimerTelegram() {
 		super();
 	}
-
-	public List<GestaoAtendimento> getListaGestaoJSF() {
-		return this.listaGestaoJSF;
-	}
-
-	public void setListaGestaoJSF(List<GestaoAtendimento> listaGestaoJSF) {
-		this.listaGestaoJSF = listaGestaoJSF;
-	}
- 
-
 
 }
