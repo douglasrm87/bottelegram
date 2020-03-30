@@ -15,7 +15,7 @@ import javax.faces.bean.ManagedBean;
 
 import br.com.douglasmendes.bottelegram.comando.dto.GestaoAtendimento;
 import br.com.douglasmendes.bottelegram.comando.dto.InteracaoComando;
-
+//https://web.telegram.org/#/im?p=@cscpr_bot
 @ApplicationScoped
 @ManagedBean(name = "telegram", eager = true)
 public class EscopoApplictCSCTimerTelegram implements Serializable {
