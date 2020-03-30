@@ -15,6 +15,9 @@ import javax.faces.bean.ManagedBean;
 import br.com.douglasmendes.bottelegram.comando.dto.GestaoAtendimento;
 import br.com.douglasmendes.bottelegram.comando.dto.InteracaoComando;
 //https://web.telegram.org/#/im?p=@cscpr_bot
+import br.com.douglasmendes.bottelegram.comando.dto.VPNConectadaExcel;
+import br.com.douglasmendes.bottelegram.excel.PlanilhaExcelVPNConectada;
+
 @ApplicationScoped
 @ManagedBean(name = "telegram", eager = true)
 public class EscopoApplictCSCTimerTelegram implements Serializable {
@@ -26,13 +29,14 @@ public class EscopoApplictCSCTimerTelegram implements Serializable {
 
 	public static Map<Long, InteracaoComando> mapaClienteComando = new HashMap<>();
 	public static List<GestaoAtendimento> listaGestao = new ArrayList<>();
+	public static List<VPNConectadaExcel> listaExcelVPNs = null;
 
 	@PostConstruct
 	public void iniciarOuvinteTelegram() {
 		System.out.println("***********************************");
 		System.out.println("Iniciando CSC BOT Telegram.");
 		System.out.println("***********************************");
-		
+
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
 			public void run() {

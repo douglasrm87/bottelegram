@@ -6,28 +6,25 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.List;
 
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
+import br.com.douglasmendes.bottelegram.EscopoApplictCSCTimerTelegram;
 import br.com.douglasmendes.bottelegram.comando.dto.VPNConectada;
+import br.com.douglasmendes.bottelegram.comando.dto.VPNConectadaExcel;
+import br.com.douglasmendes.bottelegram.excel.PlanilhaExcelVPNConectada;
 
 public class ComandoVPNConectada {
-	private List<VPNConectada> listaVPN = null;
-
-	public ComandoVPNConectada() {
-		super();
-		carregarListaVPN();
-	}
 
 	public String localizarVPN(String matricula) {
+		if (EscopoApplictCSCTimerTelegram.listaExcelVPNs == null) {
+			EscopoApplictCSCTimerTelegram.listaExcelVPNs = PlanilhaExcelVPNConectada.carregarPlanilhaVPN();
+		}
+		List<VPNConectadaExcel> listaVPN = EscopoApplictCSCTimerTelegram.listaExcelVPNs; 
 		String vpn = null;
-		for (int i = 0; i < this.listaVPN.size(); i++) {
-			if (matricula.equalsIgnoreCase(this.listaVPN.get(i).getMatricula())) {
-				vpn = this.listaVPN.get(i).getVpn();
+		for (int i = 0; i < listaVPN.size(); i++) {
+			if (matricula.equalsIgnoreCase(listaVPN.get(i).getMatricula())) {
+				vpn = listaVPN.get(i).getOrigin();
 				break;
 			}
 		}
@@ -40,17 +37,18 @@ public class ComandoVPNConectada {
 		return (List<VPNConectada>) stream.fromXML(fonte);
 	}
 
-	private void carregarListaVPN() {
+	private List<VPNConectada> carregarListaVPN() {
 		try {
 			FileReader reader = new FileReader(new java.io.File("vpnconectada.xml"));
-			this.listaVPN = carregarDadosArqXML(reader);
+			List<VPNConectada> listaVPN = carregarDadosArqXML(reader);
 			reader.close();
+			return listaVPN;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	public static void main(String[] args) {

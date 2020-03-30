@@ -24,7 +24,7 @@ public class CentralComandoTelegram {
 	public final static String LOGIN_RESULT = "\nAutorizado a usar o sistema.\n";
 
 	public final static String AJUDA = "1 - Comandos disponivieis.\n";
-	public final static String LOGIN = "2 - Informar matricula.\n";
+	public final static String LOGIN = "2 - Login.\n";
 	public final static String VPN_CONECTADA = "3 - VPN de Home Office.\n";
 	public final static String PING_V4 = "4 - ping IP/PAT.\n";
 	public final static String LIGAR_PC = "5 - Ligar PC.\n";

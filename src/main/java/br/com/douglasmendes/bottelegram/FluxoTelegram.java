@@ -26,7 +26,6 @@ public class FluxoTelegram {
 		GetUpdatesResponse updatesResponse;
 		SendResponse sendResponse;
 		BaseResponse baseResponse;
-//		SCSAPI.getInstance().autentica("c049463", "");
 
 		// executa comando no Telegram para obter as mensagens pendentes a partir de um
 		// off-set (limite inicial)
