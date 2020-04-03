@@ -8,7 +8,6 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,21 +20,24 @@ public class DHCPLeasesKeyserver {
 	private static final String FECHA_TR = "</tr>";
 	private static final String ABRE_TR = "<tr>";
 	private static final String KEYSERVER = "https://keyserver.copel.nt/lan/leases.php";
-	private static final int TAM_BUFFER = 2048;
 
 	public static void main(String[] args) {
 		new DHCPLeasesKeyserver().processar();
 	}
 
-	public void processar() {
+	public List<KeyServer>  processar() {
 		String res = carregarPaginaHTML();
 		StringReader readerSTR = new StringReader(res);
+		List<KeyServer> listaLinha = null;
 		try {
-			List<KeyServer> listaLinha = extractText(readerSTR);
-
+			listaLinha = extractText(readerSTR);
+//			for (KeyServer keyServer : listaLinha) {
+//				System.out.println(keyServer);
+//			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return listaLinha;
 	}
 
 	private List<KeyServer> extractText(Reader reader) throws IOException {
@@ -70,9 +72,7 @@ public class DHCPLeasesKeyserver {
 					linhaHTML.append(";");
 //					System.out.println(line);
 				} while (!line.contains(FECHA_TR));
-				
-				
-				System.out.println(contador + " linhaHTML: " + linhaHTML);
+//				System.out.println(contador + " linhaHTML: " + linhaHTML);
 				KeyServer keyServer = new KeyServer();
 				String strVetor[] = linhaHTML.toString().split(";");
 				keyServer.setIpv4(strVetor.length > 0 ? Jsoup.parse(strVetor[0]).text() : null);
@@ -125,10 +125,8 @@ public class DHCPLeasesKeyserver {
 				System.out.println("Erro na obtenção do objeto: " + e2.getMessage());
 			}
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return conteudoHTML.toString();

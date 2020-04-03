@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class ComandoPing {
+	private static final String TEMPO = "tempo";
+
 	public static void main(String[] args) {
 		new ComandoPing().processar("ping -4 -n 1 L00000221");
 	}
@@ -15,7 +17,7 @@ public class ComandoPing {
 			String respPing = "";
 			while (pingar.hasNextLine()) {
 				respPing = pingar.nextLine();
-				if (respPing.contains("tempo")) {
+				if (respPing.contains(TEMPO)) {
 					resposta.append(respPing + "\n");
 				}
 			}

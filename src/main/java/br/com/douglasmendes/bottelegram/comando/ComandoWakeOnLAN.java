@@ -9,25 +9,26 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.List;
 
+import org.apache.commons.net.util.SubnetUtils;
+
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import br.com.douglasmendes.bottelegram.comando.dto.DesktopLAN;
+import br.com.douglasmendes.bottelegram.comando.dto.KeyServer;
+import br.com.douglasmendes.bottelegram.dhcppagina.DHCPLeasesKeyserver;
 
 public class ComandoWakeOnLAN {
 	public static final int PORT = 8080;
-	private List<DesktopLAN> listaDesktopsLAN = null;
+	public static final String MASCARA_PADRAO_COPEL_NET = "255.255.240.0";	
+	public static final String MASCARA_BARRA_PADRAO_COPEL_NET = "/20";
 
-	public ComandoWakeOnLAN() {
-		super();
-		carregarListaDesktop();
-	}
-
-	private DesktopLAN localizarDesktop(String pat) {
+	private DesktopLAN localizarDesktopXML(String pat) {
 		DesktopLAN pc = null;
-		for (int i = 0; i < this.listaDesktopsLAN.size(); i++) {
-			if (pat.equalsIgnoreCase(this.listaDesktopsLAN.get(i).getPat())) {
-				pc = this.listaDesktopsLAN.get(i);
+		List<DesktopLAN> listaDesktopsLAN = carregarListaDesktopXML();
+		for (int i = 0; i < listaDesktopsLAN.size(); i++) {
+			if (pat.equalsIgnoreCase(listaDesktopsLAN.get(i).getPat())) {
+				pc = listaDesktopsLAN.get(i);
 				break;
 			}
 		}
@@ -40,17 +41,18 @@ public class ComandoWakeOnLAN {
 		return (List<DesktopLAN>) stream.fromXML(fonte);
 	}
 
-	private void carregarListaDesktop() {
+	private List<DesktopLAN> carregarListaDesktopXML() {
+		List<DesktopLAN> listaDesktopsLAN = null;
 		try {
 			FileReader reader = new FileReader(new java.io.File("desktopslan.xml"));
-			this.listaDesktopsLAN = carregarDadosArqXML(reader);
+			listaDesktopsLAN = carregarDadosArqXML(reader);
 			reader.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return listaDesktopsLAN;
 	}
 
 	public static void main(String[] args) {
@@ -60,8 +62,24 @@ public class ComandoWakeOnLAN {
 
 	}
 
+	private DesktopLAN localizarDesktopKEYServer(String patrimonio) {
+		DHCPLeasesKeyserver keyServer = new DHCPLeasesKeyserver();
+		List<KeyServer> listaLinha = keyServer.processar();
+		DesktopLAN desktop = new DesktopLAN();
+		for (KeyServer key : listaLinha) {
+			if (key.getPatrimonio().equalsIgnoreCase(patrimonio)) {
+				SubnetUtils utils = new SubnetUtils(key.getIpv4()+MASCARA_BARRA_PADRAO_COPEL_NET);
+				desktop.setBroadcastlan(utils.getInfo().getBroadcastAddress());
+				desktop.setMac(key.getMacAddress());
+				desktop.setPat(patrimonio);
+			}
+			System.out.println("keyServer: " + keyServer);
+			System.out.println("desktop: " + desktop);
+		}
+		return desktop;
+	}
 	public void ligarDesktop(String desktop) {
-		DesktopLAN computador = localizarDesktop(desktop);
+		DesktopLAN computador = localizarDesktopKEYServer(desktop);
 //		System.out.println("Usage: java WakeOnLan <broadcast-ip> <mac-address>");
 //		System.out.println("Example: java WakeOnLan 192.168.0.255 00:0D:61:08:22:4A");
 //		System.out.println("Example: java WakeOnLan 192.168.0.255 00-0D-61-08-22-4A");
