@@ -2,6 +2,7 @@ br\com\douglasmendes\bottelegram\email\ServicoEnvioEmail.class
 br\com\douglasmendes\bottelegram\dhcppagina\DHCPLeasesKeyserver.class
 br\com\douglasmendes\bottelegram\comando\dto\GestaoAtendimento.class
 br\com\douglasmendes\bottelegram\comando\dto\VPNConectada.class
+br\com\douglasmendes\bottelegram\dhcppagina\DadoIPv4.class
 br\com\douglasmendes\bottelegram\PrincipalTelegram.class
 br\com\douglasmendes\bottelegram\comando\CentralComandoTelegram.class
 com\copel\sm\solman\InbSyncSMCriarChamadosLegReq.class
@@ -9,14 +10,12 @@ projetojsfmaven\Teste.class
 br\com\douglasmendes\bottelegram\FluxoTelegram.class
 br\com\douglasmendes\bottelegram\comando\ComandoPing.class
 br\com\douglasmendes\bottelegram\comando\ComandoOrientarContaAdministrador.class
-br\com\douglasmendes\bottelegram\dhcppagina\WEBUtil.class
+br\com\douglasmendes\bottelegram\comando\dto\KeyServer.class
 br\com\douglasmendes\bottelegram\comando\ComandoWakeOnLAN.class
 br\com\douglasmendes\bottelegram\comando\dto\VPNConectadaExcel.class
 com\copel\sm\solman\DTSMCriarChamadosLegReq.class
 br\com\douglasmendes\bottelegram\comando\ComandoLogin.class
 br\com\douglasmendes\bottelegram\comando\UsoEmail.class
-br\com\douglasmendes\bottelegram\dhcppagina\HTMLParse.class
-br\com\douglasmendes\bottelegram\dhcppagina\HTMLUtil.class
 com\copel\sm\solman\package-info.class
 br\com\douglasmendes\bottelegram\comando\ComandoOrientarInstalarVPN.class
 br\com\douglasmendes\bottelegram\comando\ComandoVPNConectada.class
@@ -24,6 +23,7 @@ br\com\douglasmendes\bottelegram\comando\dto\DesktopLAN.class
 com\copel\sm\solman\DTSMCriarChamadosLegResp.class
 com\copel\sm\solman\ObjectFactory.class
 com\copel\sm\solman\DTSMCriarChamadosLegReq$ANEXOS.class
+br\com\douglasmendes\bottelegram\dhcppagina\Teste.class
 br\com\douglasmendes\bottelegram\comando\ComandoAntiVirus.class
 br\com\douglasmendes\bottelegram\email\ServicoDadorRH.class
 br\com\douglasmendes\bottelegram\comando\dto\InteracaoComando.class
