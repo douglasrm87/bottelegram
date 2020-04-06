@@ -4,6 +4,7 @@ public class DesktopLAN {
 	private String pat;
 	private String mac;
 	private String broadcastlan;
+	private String ipV4;
 
 	
 	public String getPat() {
@@ -28,6 +29,14 @@ public class DesktopLAN {
 
 	public void setBroadcastlan(String broadcastlan) {
 		this.broadcastlan = broadcastlan;
+	}
+
+	public String getIpV4() {
+		return this.ipV4;
+	}
+
+	public void setIpV4(String ipV4) {
+		this.ipV4 = ipV4;
 	}
 
 }

@@ -17,7 +17,6 @@ public class CentralComandoTelegram {
 	private static final String EMAIL_ENVIADO_COM_SUCESSO_PARA = "Email enviado com sucesso para: ";
 	private static final String INFORMAR_O_IP_OU_PAT = "Informar o IP ou PAT";
 	private static final String INFORMAR_MATRICULA = "Informar a sua matricula (c0xxxxx)";
-	private static final String PING_4_N_1 = "ping -4 -n 1 ";
 	private static final String FUNCOES = "\nFunções:\n";
 
 	public final static String FORCE_POINT = "\nConectado na VPN ForcePoint.\n";
@@ -65,7 +64,7 @@ public class CentralComandoTelegram {
 		case 4:
 			if (complementoComando != null) {
 				ComandoPing ping = new ComandoPing();
-				msg.append(ping.processar(PING_4_N_1 + complementoComando));
+				msg.append(ping.processar(complementoComando));
 				EscopoApplictCSCTimerTelegram.listaGestao
 						.add(new GestaoAtendimento(complementoComando, null, PING_V4, new Date()));
 			} else {
@@ -75,7 +74,7 @@ public class CentralComandoTelegram {
 		case 5:
 			if (complementoComando != null) {
 				ComandoWakeOnLAN ligar = new ComandoWakeOnLAN();
-				ligar.ligarDesktop(complementoComando);
+				msg.append(ligar.ligarDesktop(complementoComando));
 				EscopoApplictCSCTimerTelegram.listaGestao
 						.add(new GestaoAtendimento(null, complementoComando, PING_V4, new Date()));
 			} else {
