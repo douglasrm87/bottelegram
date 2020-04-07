@@ -22,11 +22,13 @@ D:\devstudio12\workspace\bottelegram\src\main\java\br\com\douglasmendes\botteleg
 D:\devstudio12\workspace\bottelegram\src\main\java\br\com\douglasmendes\bottelegram\comando\UsoEmail.java
 D:\devstudio12\workspace\bottelegram\src\main\java\br\com\douglasmendes\bottelegram\FluxoTelegram.java
 D:\devstudio12\workspace\bottelegram\src\main\java\br\com\douglasmendes\bottelegram\email\ServicoDadorRH.java
+D:\devstudio12\workspace\bottelegram\src\main\java\br\com\douglasmendes\bottelegram\comando\ComandoWakeOnLANXML.java
 D:\devstudio12\workspace\bottelegram\src\main\java\br\com\douglasmendes\bottelegram\comando\dto\Email.java
 D:\devstudio12\workspace\bottelegram\src\main\java\br\com\douglasmendes\bottelegram\comando\dto\VPNConectada.java
 D:\devstudio12\workspace\bottelegram\src\main\java\br\com\douglasmendes\bottelegram\comando\ComandoWakeOnLAN.java
 D:\devstudio12\workspace\bottelegram\src\main\java\br\com\douglasmendes\bottelegram\EscopoApplictCSCTimerTelegram.java
 D:\devstudio12\workspace\bottelegram\src\main\java\br\com\douglasmendes\bottelegram\comando\ComandoOrientarInstalarVPN.java
+D:\devstudio12\workspace\bottelegram\src\main\java\br\com\douglasmendes\bottelegram\comando\ComandoRede.java
 D:\devstudio12\workspace\bottelegram\src\main\java\projetojsfmaven\Teste.java
 D:\devstudio12\workspace\bottelegram\src\main\java\br\com\douglasmendes\bottelegram\email\ServicoEnvioEmail.java
 D:\devstudio12\workspace\bottelegram\src\main\java\com\copel\sm\solman\DTSMCriarChamadosLegReq.java

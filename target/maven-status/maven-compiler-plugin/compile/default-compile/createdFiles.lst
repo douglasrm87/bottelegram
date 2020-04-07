@@ -5,6 +5,7 @@ br\com\douglasmendes\bottelegram\comando\dto\VPNConectada.class
 br\com\douglasmendes\bottelegram\dhcppagina\DadoIPv4.class
 br\com\douglasmendes\bottelegram\PrincipalTelegram.class
 br\com\douglasmendes\bottelegram\comando\CentralComandoTelegram.class
+br\com\douglasmendes\bottelegram\comando\ComandoWakeOnLANXML.class
 com\copel\sm\solman\InbSyncSMCriarChamadosLegReq.class
 projetojsfmaven\Teste.class
 br\com\douglasmendes\bottelegram\FluxoTelegram.class
@@ -24,6 +25,7 @@ com\copel\sm\solman\DTSMCriarChamadosLegResp.class
 com\copel\sm\solman\ObjectFactory.class
 com\copel\sm\solman\DTSMCriarChamadosLegReq$ANEXOS.class
 br\com\douglasmendes\bottelegram\dhcppagina\Teste.class
+br\com\douglasmendes\bottelegram\comando\ComandoRede.class
 br\com\douglasmendes\bottelegram\comando\ComandoAntiVirus.class
 br\com\douglasmendes\bottelegram\email\ServicoDadorRH.class
 br\com\douglasmendes\bottelegram\comando\dto\InteracaoComando.class
