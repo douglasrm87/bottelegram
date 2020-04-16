@@ -8,6 +8,7 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,15 +26,18 @@ public class DHCPLeasesKeyserver {
 		new DHCPLeasesKeyserver().processar();
 	}
 
-	public List<KeyServer>  processar() {
-		String res = carregarPaginaHTML();
-		StringReader readerSTR = new StringReader(res);
+	public List<KeyServer> processar() {
+		
 		List<KeyServer> listaLinha = null;
 		try {
+			String res = carregarPaginaHTML();
+			StringReader readerSTR = new StringReader(res);
 			listaLinha = extractText(readerSTR);
 //			for (KeyServer keyServer : listaLinha) {
 //				System.out.println(keyServer);
 //			}
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -44,16 +48,10 @@ public class DHCPLeasesKeyserver {
 		BufferedReader br = new BufferedReader(reader);
 
 		String line;
-		// montar as linhas
+ 
 		List<KeyServer> listaKeyServer = new ArrayList<>();
-		int contador = 1;
-//		while ((line = br.readLine()) != null) {
-//			System.out.println(line);
-//			if (line.contains("10.244.129.210")){
-//				System.out.println(contador + " line: " + line);
-//			}	
-//		}
-	 
+		int contador = 1; 
+
 		while ((line = br.readLine()) != null) {
 			StringBuilder linhaHTML = new StringBuilder();
 			if (line.contains(ABRE_TR)) {
@@ -62,17 +60,12 @@ public class DHCPLeasesKeyserver {
 					if (line == null) {
 						break;
 					}
-//					if (line.contains("10.244.129.210")){
-//						System.out.println(line);
-//					}					
 					if ("<td></td>".equals(line.replaceAll("	", ""))) {
 						line = NAO_INFORMADO;
 					}
 					linhaHTML.append(line);
 					linhaHTML.append(";");
-//					System.out.println(line);
 				} while (!line.contains(FECHA_TR));
-//				System.out.println(contador + " linhaHTML: " + linhaHTML);
 				KeyServer keyServer = new KeyServer();
 				String strVetor[] = linhaHTML.toString().split(";");
 				keyServer.setIpv4(strVetor.length > 0 ? Jsoup.parse(strVetor[0]).text() : null);
@@ -85,14 +78,13 @@ public class DHCPLeasesKeyserver {
 				keyServer.setState(strVetor.length > 7 ? Jsoup.parse(strVetor[7]).text() : null);
 				keyServer.setVendor(strVetor.length > 8 ? Jsoup.parse(strVetor[8]).text() : null);
 				listaKeyServer.add(keyServer);
-				contador ++;
+				contador++;
 			}
 		}
 		return listaKeyServer;
 	}
 
-	
-	private String carregarPaginaHTML (){
+	private String carregarPaginaHTML() {
 
 		StringBuilder conteudoHTML = new StringBuilder();
 		URL tUrl;
@@ -106,19 +98,14 @@ public class DHCPLeasesKeyserver {
 
 			try (InputStreamReader tArq1 = new InputStreamReader(tInput);
 					BufferedReader tArq2 = new BufferedReader(tArq1);) {
-//				int contador = 1;
 				while (true) {
 					tLinha = tArq2.readLine();
 					if (tLinha == null) {
 						break;
 					}
-//					System.out.println(contador+ " " +tLinha);
-//					contador ++;
 					conteudoHTML.append(tLinha);
 					conteudoHTML.append("\n");
-					
 				}
-				 
 			} catch (MalformedURLException e1) {
 				System.out.println("URL inválida: " + e1.getMessage());
 			} catch (IOException e2) {
@@ -127,7 +114,7 @@ public class DHCPLeasesKeyserver {
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Servidor Keyserver não localiza. Verificar se o acesso ao servidor é válido e liberado pela Internet.");
 		}
 		return conteudoHTML.toString();
 	}

@@ -6,7 +6,7 @@
 	<groupId>br.com.douglasmendes</groupId>
 	<artifactId>bottelegram</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-<!-- 	<packaging>jar</packaging>  -->
+	<!-- <packaging>jar</packaging> -->
 
 	<name>bottelegram</name>
 	<url>http://maven.apache.org</url>
@@ -162,6 +162,12 @@
 			<version>3.6</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.jamierf/wol -->
+		<dependency>
+			<groupId>com.jamierf</groupId>
+			<artifactId>wol</artifactId>
+			<version>0.2</version>
+		</dependency>
 	</dependencies>
 </project>
 

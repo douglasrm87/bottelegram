@@ -5,8 +5,17 @@ public class DesktopLAN {
 	private String mac;
 	private String broadcastlan;
 	private String ipV4;
+	private int porta;
 
 	
+	public int getPorta() {
+		return this.porta;
+	}
+
+	public void setPorta(int porta) {
+		this.porta = porta;
+	}
+
 	public String getPat() {
 		return this.pat;
 	}

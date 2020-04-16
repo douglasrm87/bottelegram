@@ -26,8 +26,7 @@ public class ComandoRede {
 				desktop.setIpV4(key.getIpv4());
 				valida = true;
 			}
-//			System.out.println("keyServer: " + keyServer);
-//			System.out.println("desktop: " + desktop);
+ 
 		}
 		if (valida) {
 			return desktop;
